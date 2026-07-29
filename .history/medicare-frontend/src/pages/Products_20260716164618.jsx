@@ -1,0 +1,646 @@
+import React, { useState } from "react";
+import "./Products.css";
+import {
+  FaHeart,
+  FaRegHeart
+} from "react-icons/fa";
+
+const Products = ({
+ cart,
+ setCart,
+ searchTerm,
+ wishlist,
+ setWishlist
+})=>{
+
+const products = [
+  {
+    id: 1,
+    name: "Dolo 650",
+    category: "Fever & Pain",
+    image: "https://texinkart.com/cdn/shop/products/Dolo-650-Tablets---15-Tablets-Micro-Labs-1667089226.jpg?v=1747710967",
+    price: 35,
+  },
+  {
+    id: 2,
+    name: "Paracetamol 650",
+    category: "Fever & Pain",
+    image: "https://www.stelonbiotech.com/wp-content/uploads/2022/04/PYREMUST-650-TAB.jpg",
+    price: 28,
+  },
+  {
+    id: 3,
+    name: "Crocin Advance",
+    category: "Fever & Pain",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThTOjFxaozbj2JII5VkxcJXR6Ut7Rgxmj4XiSTcKvsEDET4LkmFwFEBV_I&s=10",
+    price: 800,
+  },
+  {
+    id: 4,
+    name: "Combiflam",
+    category: "Fever & Pain",
+    image: "https://cdn01.pharmeasy.in/dam/products_otc/I14502/combiflam-ms-tube-of-30gm-cream-6.01-1750842489.jpg?dim=768x585&q=100",
+    price: 131,
+  },
+  {
+    id: 5,
+    name: "Ibuprofen",
+    category: "Fever & Pain",
+    image: "https://i0.wp.com/janaushadhistore.online/wp-content/uploads/2023/06/1000215293-scaled.jpg?fit=2486%2C2560&ssl=1",
+    price: 10,
+  },
+  {
+    id: 6,
+    name: "Benadryl Syrup(150 ml)",
+    category: "Cold & Cough",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWC-e2pjFx2a27PS-YqbpkdPJrwlOUCW5GWCt6xMXrZg&s=10",
+    price: 141,
+  },
+  {
+    id: 7,
+    name: "Ascoril LS(100 ml)",
+    category: "Cold & Cough",
+    image: "https://m.media-amazon.com/images/I/81Py0h1vejL._SX522_.jpg",
+    price: 123,
+  },
+  {
+    id: 8,
+    name: "Sinarest Tablet(15 Tablets)",
+    category: "Cold & Cough",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz7N7ycWgcyD2Dc404sy5vVwYHHyRqoo3md_sxU2aqLQ&s=10",
+    price: 80,
+  },
+  {
+    id: 9,
+    name: "Cetirizine(10 Tablets)",
+    category: "Cold & Cough",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeMRMHRYS0CsR5W_WgzPsNN-1iCpeUG9M_0upmFkhFCg&s=10",
+    price: 30,
+  },
+  {
+    id: 10,
+    name: "Vicks VapoRub",
+    category: "Cold & Cough",
+    image: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcREKKM7httHwCo4uzvqB1ORbHJNqWM9nRTQ5gYD2Ut8oAvk4eEOURYgAuxg3LA9P1tZv4uY4b5AvftRxRv-oL6ObTZVVIRn",
+    price: 130,
+  },
+  {
+    id: 11,
+    name: "Vitamin C Tablets",
+    category: "Vitamins & Supplements",
+    image: "https://m.media-amazon.com/images/I/61Q-+KR3WcL._AC_UF1000,1000_QL80_.jpg",
+    price: 249,
+  },
+  {
+    id: 12,
+    name: "Vitamin D3 (30 Tablets)",
+    category: "Vitamins & Supplements",
+    image: "https://vitabiotics.in/cdn/shop/files/Ultra-D3-1000-Front-View_c99c2d8c-af36-477e-8531-4bc170dc92bc.png?crop=center&height=1680&v=1776930183&width=1680",
+    price: 123,
+  },
+  {
+    id: 13,
+    name: "Multivitamin Capsules (120 Capsules)",
+    category: "Vitamins & Supplements",
+    image: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQaSlCpAix32zEzlzC2sRaB12oYlcwkyDu19z6e8HStyxb3QMLejWk-CWOdLTEAp_e-3BBl_FoifbirxbCmRNIHbkN7y_zy-nGflIBKLjN9kHJcK7B3iJbMVcAQ10b7getZk8Ltc3E&usqp=CAc",
+    price: 1306,
+  },
+  {
+    id: 14,
+    name: "Calcium Tablets (30 Capsules)",
+    category: "Vitamins & Supplements",
+    image: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQnSdX3cdoRXkT4gSICJ_NXEtOvsnpPdYPo2zbLh1OjkRAkl7pkA99wwpi-3bmVeB6bAKSY8sBmPAcG1cTr-iTjF9gvCQESxctLvfeNr4x0Sxs-aGlpY8KOZiOthsvl_GO35wpCdA&usqp=CAc",
+    price: 840,
+  },
+  {
+    id: 15,
+    name: "Omega-3 Fish Oil (60 Capsules)",
+    category: "Health Supplements",
+    image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSiD8HUQS9JB1mwvTTQny7AI090PMlAEyZXFdYg_9VjM2A02w_YmpyX677a3ocuQ-qjYTeNwWxf1ECqoV7Jy2JSi2M8SBY3efZ4YS0YwDOT260M1Zyv-J2nsPpbrJUyasNiG8Hh3k1TkwU&usqp=CAc",
+    price: 755,
+  },
+  {
+  id: 16,
+  name: "Biotin Tablets(60 Tablets)",
+  category: "Health Supplements",
+  image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF0haD6_UVYCziZ06uk3_rjaTMd-VeZfHhvXraEe_pjQ&s=10",
+  price: 420,
+},
+{
+  id: 17,
+  name: "Protein Powder(454 g)",
+  category: "Health Supplements",
+  image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBYtggBQYh7TlUfH12-dw5sQR_GEAPsZT9GegNZCKvFA&s=10",
+  price: 2349,
+},
+{
+  id: 18,
+  name: "Revital H Capsules(60 Capsules)",
+  category: "Health Supplements",
+  image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLftZRUzravbpXUM4wZbALTH0m3NT7pn_0E-JOwi5uCQ&s=10",
+  price: 464,
+},
+{
+  id: 19,
+  name: "Zincovit Tablets(10 Tablets)",
+  category: "Health Supplements",
+  image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9WGZEHQ-z7XhB5x_zaErUrTPyW4kyYemriIgJ3aURjw&s=10",
+  price: 140,
+},
+{
+  id: 20,
+  name: "Shelcal 500",
+  category: "Health Supplements",
+  image: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTLXDeynRo8rDoB_8_gazR1KnzYo-aFGEE6b9gUCQhqim8Fg9Bu8P2sS4ckMmg90B-WZJQiN81NM2s4ScBZujBqrcpM0b6u44Ez1BujIw4&usqp=CAc",
+  price: 135,
+},
+{
+  id: 21,
+  name: "Digene Gel(200 ml)",
+  category: "Digestive Care",
+  image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiI_72rIcpcHhAQKLCZKYsYNcPkYBRtoMvpUQjgXr_RQ&s=10",
+  price: 161,
+},
+{
+  id: 22,
+  name: "Eno Fruit Salt",
+  category: "Digestive Care",
+  image: "http://pharmswift.in/wp-content/uploads/2025/07/img_011.png",
+  price: 10,
+},
+{
+  id: 23,
+  name: "ORS Powder",
+  category: "Digestive Care",
+  image: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQg8wwxIQL87_KIKywuDBsxYt4H70H3gbzogVKfLUfH7xL1BFamwP2DbGIN0HlO1OUAjAA1zzFZ9s2YaqWB4huvt2AnA09Yn8dBVZHjgCh0xk4Z0psoDovRqg&usqp=CAc",
+  price: 15,
+},
+{
+  id: 24,
+  name: "Pantoprazole",
+  category: "Digestive Care",
+  image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhouHldUSkJ2jnH-EhbDGdIGD0zzMYKsqwQzdsIEIUZQ&s=10",
+  price: 1820,
+},
+{
+  id: 25,
+  name: "Dettol Antiseptic(60 ml)",
+  category: "Personal Care",
+  image: "https://dukaan.b-cdn.net/700x700/webp/master/products/dettol-antiseptic-liquid-1l.jpg",
+  price: 30,
+},
+{
+  id: 26,
+  name: "Savlon Antiseptic(100 ml)",
+  category: "Personal Care",
+  image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKKVqc4ylqJd3kY9Hcwrsi_QWUl3XWUQ31Qsre2cxKNQ&s=10",
+  price: 52,
+},
+{
+  id: 27,
+  name: "Hand Sanitizer",
+  category: "Personal Care",
+  image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQJgJuqZByAALDt7d9KZVdyCa7sfnTywpT79hmhx3X7O6JCnYhgmMG4PAQx-RdiI0Dy1nC4dkBjNZzaMUbS1O1FM4_hS0WqXXJsHSu0Bj0Xvmc5DmqtfXBbNdRqB2ziIvL3s7bLTgM&usqp=CAc",
+  price: 35,
+},
+{
+  id: 29,
+  name: "Band Aid Strips",
+  category: "Personal Care",
+  image: "https://m.media-amazon.com/images/I/71l2uM5M4DL._SL1500_.jpg",
+  price: 45,
+},
+{
+  id: 30,
+  name: "Cotton Roll",
+  category: "Personal Care",
+  image: "https://m.media-amazon.com/images/I/61x2Dqz6D-L._SL1500_.jpg",
+  price: 60,
+},
+{
+  id: 31,
+  name: "Himalaya Neem Face Wash",
+  category: "Skin Care",
+  image: "https://m.media-amazon.com/images/I/61Q5fL6dS1L._SL1500_.jpg",
+  price: 150,
+},
+{
+  id: 32,
+  name: "Mamaearth Vitamin C Serum",
+  category: "Skin Care",
+  image: "https://m.media-amazon.com/images/I/61z3n6N4A-L._SL1500_.jpg",
+  price: 399,
+},
+{
+  id: 33,
+  name: "Cetaphil Gentle Cleanser",
+  category: "Skin Care",
+  image: "https://m.media-amazon.com/images/I/61e4f9FhDHL._SL1500_.jpg",
+  price: 599,
+},
+{
+  id: 34,
+  name: "Nivea Soft Cream",
+  category: "Skin Care",
+  image: "https://m.media-amazon.com/images/I/71hX8v0Vv5L._SL1500_.jpg",
+  price: 199,
+},
+{
+  id: 35,
+  name: "Boroline Cream",
+  category: "Skin Care",
+  image: "https://m.media-amazon.com/images/I/61rY4hP+7WL._SL1500_.jpg",
+  price: 45,
+},
+{
+  id: 36,
+  name: "Digital Thermometer",
+  category: "Medical Devices",
+  image: "https://m.media-amazon.com/images/I/61PqH5KcPBL._SL1500_.jpg",
+  price: 350,
+},
+{
+  id: 37,
+  name: "Blood Pressure Monitor",
+  category: "Medical Devices",
+  image: "https://m.media-amazon.com/images/I/71M+v4x3sLL._SL1500_.jpg",
+  price: 1500,
+},
+{
+  id: 38,
+  name: "Pulse Oximeter",
+  category: "Medical Devices",
+  image: "https://m.media-amazon.com/images/I/61F4rD6fJzL._SL1500_.jpg",
+  price: 799,
+},
+{
+  id: 39,
+  name: "Glucometer",
+  category: "Medical Devices",
+  image: "https://m.media-amazon.com/images/I/71Q+L0XbM9L._SL1500_.jpg",
+  price: 1299,
+},
+{
+  id: 40,
+  name: "Nebulizer Machine",
+  category: "Medical Devices",
+  image: "https://m.media-amazon.com/images/I/71O3eP5xM4L._SL1500_.jpg",
+  price: 1899,
+},
+{
+  id: 41,
+  name: "Prega News Kit",
+  category: "Healthcare Devices",
+  image: "https://m.media-amazon.com/images/I/61LJ1xRk0kL._SL1500_.jpg",
+  price: 120,
+},
+{
+  id: 42,
+  name: "Hot Water Bag",
+  category: "Healthcare Devices",
+  image: "https://m.media-amazon.com/images/I/71rP0r9r0KL._SL1500_.jpg",
+  price: 249,
+},
+{
+  id: 43,
+  name: "Steam Vaporizer",
+  category: "Healthcare Devices",
+  image: "https://m.media-amazon.com/images/I/71xk4t5dWKL._SL1500_.jpg",
+  price: 499,
+},
+{
+  id: 44,
+  name: "Heating Pad",
+  category: "Healthcare Devices",
+  image: "https://m.media-amazon.com/images/I/71JvN5bGfXL._SL1500_.jpg",
+  price: 799,
+},
+{
+  id: 45,
+  name: "Adult Face Mask (Pack of 10)",
+  category: "Healthcare Devices",
+  image: "https://m.media-amazon.com/images/I/71vYgR8s4kL._SL1500_.jpg",
+  price: 99,
+},
+{
+  id: 46,
+  name: "Azithromycin 500mg",
+  category: "Fever & Pain",
+  image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ74QChINJ_83u_v4L-s73Wim0zO2VTcCPCt5KJq70Hw&s=10",
+  price: 92,
+},
+{
+  id: 47,
+  name: "Aceclofenac Tablets",
+  category: "Fever & Pain",
+  image: "https://images.unsplash.com/photo-1573883430697-4c347f4c3f2f?q=80&w=800&auto=format&fit=crop",
+  price: 68,
+},
+{
+  id: 48,
+  name: "Diclofenac Gel",
+  category: "Fever & Pain",
+  image: "https://images.unsplash.com/photo-1628771065518-0d82f1938462?q=80&w=800&auto=format&fit=crop",
+  price: 145,
+},
+{
+  id: 49,
+  name: "Meftal Spas",
+  category: "Fever & Pain",
+  image: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?q=80&w=800&auto=format&fit=crop",
+  price: 52,
+},
+{
+  id: 50,
+  name: "Naproxen Tablets",
+  category: "Fever & Pain",
+  image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=800&auto=format&fit=crop",
+  price: 78,
+},
+{
+  id: 51,
+  name: "Honitus Cough Syrup",
+  category: "Cold & Cough",
+  image: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=800&auto=format&fit=crop",
+  price: 140,
+},
+{
+  id: 52,
+  name: "Alex Cough Syrup",
+  category: "Cold & Cough",
+  image: "https://images.unsplash.com/photo-1576602976047-174e57a47881?q=80&w=800&auto=format&fit=crop",
+  price: 132,
+},
+{
+  id: 53,
+  name: "Allegra 120mg",
+  category: "Cold & Cough",
+  image: "https://images.unsplash.com/photo-1626716493137-b67fe9501e76?q=80&w=800&auto=format&fit=crop",
+  price: 198,
+},
+{
+  id: 54,
+  name: "Levocetirizine",
+  category: "Cold & Cough",
+  image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop",
+  price: 58,
+},
+{
+  id: 55,
+  name: "Montelukast Tablets",
+  category: "Cold & Cough",
+  image: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?q=80&w=800&auto=format&fit=crop",
+  price: 155,
+},
+{
+  id: 56,
+  name: "Zinc Tablets",
+  category: "Vitamins & Supplements",
+  image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=800&auto=format&fit=crop",
+  price: 180,
+},
+{
+  id: 57,
+  name: "Iron Tablets",
+  category: "Vitamins & Supplements",
+  image: "https://images.unsplash.com/photo-1628771065518-0d82f1938462?q=80&w=800&auto=format&fit=crop",
+  price: 165,
+},
+{
+  id: 58,
+  name: "B-Complex Tablets",
+  category: "Vitamins & Supplements",
+  image: "https://images.unsplash.com/photo-1573883430697-4c347f4c3f2f?q=80&w=800&auto=format&fit=crop",
+  price: 145,
+},
+{
+  id: 59,
+  name: "Calamine Lotion",
+  category: "Skin Care",
+  image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=800&auto=format&fit=crop",
+  price: 110,
+},
+{
+  id: 60,
+  name: "Antiseptic Cream",
+  category: "Skin Care",
+  image: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800&auto=format&fit=crop",
+  price: 95,
+},
+{
+  id: 61,
+  name: "Medical Gloves",
+  category: "Healthcare Devices",
+  image: "https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=800&auto=format&fit=crop",
+  price: 199,
+},
+{
+  id: 62,
+  name: "Digital Weighing Scale",
+  category: "Medical Devices",
+  image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop",
+  price: 1299,
+},
+{
+  id: 63,
+  name: "First Aid Kit",
+  category: "Healthcare Devices",
+  image: "https://images.unsplash.com/photo-1584516150909-c43483ee7935?q=80&w=800&auto=format&fit=crop",
+  price: 599,
+}
+];
+
+
+const allProducts = products;
+ // CATEGORY BUTTONS
+
+const categories = [
+  "All",
+  "Fever & Pain",
+  "Cold & Cough",
+  "Vitamins & Supplements",
+  "Skin Care",
+  "Digestive Care",
+  "Personal Care",
+  "Healthcare Devices",
+  "Medical Devices",
+  "Health Supplements"
+];
+
+
+const [selectedCategory, setSelectedCategory] = useState("All");
+
+  // FILTER
+
+  const filteredProducts = products.filter((item) => {
+
+    const categoryMatch =
+      selectedCategory === "All" ||
+      item.category === selectedCategory;
+
+    const searchMatch =
+      item.name
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+
+    return categoryMatch && searchMatch;
+
+  });
+
+  // ADD TO CART
+
+  const addToCart = (product) => {
+
+    const existing = cart.find(
+      (item) => item.id === product.id
+    );
+
+    if (existing) {
+
+      setCart(
+        cart.map((item) =>
+          item.id === product.id
+            ? {
+                ...item,
+                quantity: (item.quantity || 1) + 1
+              }
+            : item
+        )
+      );
+
+    } else {
+
+      setCart([
+        ...cart,
+        {
+          ...product,
+          quantity: 1
+        }
+      ]);
+
+    }
+
+  };
+
+  // WISHLIST
+
+  const toggleWishlist = (product) => {
+
+    const exists = wishlist.find(
+      (item) => item.id === product.id
+    );
+
+    if (exists) {
+
+      setWishlist(
+        wishlist.filter(
+          (item) => item.id !== product.id
+        )
+      );
+
+    } else {
+
+      setWishlist([
+        ...wishlist,
+        product
+      ]);
+
+    }
+
+  };
+
+  return (
+
+    <section className="products-section">
+
+      <h2>Our Products</h2>
+
+      <div className="category-buttons">
+
+        {
+          categories.map((cat) => (
+
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={
+                selectedCategory === cat
+                  ? "active"
+                  : ""
+              }
+            >
+              {cat}
+            </button>
+
+          ))
+        }
+
+      </div>
+
+      <div className="product-grid">
+
+        {
+          filteredProducts.length > 0 ?
+
+            filteredProducts.map((item) => (
+
+              <div
+                className="product-card"
+                key={item.id}
+              >
+
+                <button
+                  className="wishlist-btn"
+                  onClick={() => toggleWishlist(item)}
+                >
+
+                  {
+                    wishlist.find(
+                      (p) => p.id === item.id
+                    )
+                      ? <FaHeart />
+                      : <FaRegHeart />
+                  }
+
+                </button>
+
+                <img
+                  src={item.image}
+                  alt={item.name}
+                />
+
+                <h3>{item.name}</h3>
+
+                <p>{item.category}</p>
+
+                <h4>
+                  ₹ {item.price}
+                </h4>
+
+                <button
+                  onClick={() => addToCart(item)}
+                >
+                  Add To Cart
+                </button>
+
+              </div>
+
+            ))
+
+            :
+
+            <h2 className="no-product">
+              No Products Found
+            </h2>
+
+        }
+
+      </div>
+
+    </section>
+
+  );
+
+};
+
+export default Products;

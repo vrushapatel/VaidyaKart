@@ -1,0 +1,170 @@
+.services-page{
+  padding:100px 8%;
+  min-height:100vh;
+
+  background:#bff5bc;
+
+  position:relative;
+  overflow:hidden;
+}
+
+/* HEADER */
+
+.services-header{
+  text-align:center;
+  margin-bottom:70px;
+}
+
+.services-header h1{
+  font-size:48px;
+  color:#064e3b;
+  margin-bottom:20px;
+  font-weight:800;
+}
+
+.services-header p{
+  color:#166534;
+  max-width:750px;
+  margin:auto;
+  line-height:1.8;
+  font-size:17px;
+}
+
+/* GRID */
+
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+
+/* CARD */
+
+.service-card{
+  background:rgba(255,255,255,.35);
+
+  backdrop-filter:blur(20px);
+
+  border:1px solid rgba(22,163,74,.25);
+
+  padding:35px 25px;
+
+  border-radius:25px;
+
+  text-align:center;
+
+  transition:.4s;
+
+  color:#0c4a3a;
+
+  position:relative;
+}
+
+.service-card:hover{
+
+  transform:translateY(-10px);
+
+  border-color:#16a34a;
+
+  box-shadow:
+  0 20px 40px rgba(22,163,74,.2);
+}
+
+/* ICON */
+
+.service-icon{
+  width:85px;
+  height:85px;
+
+  margin:auto auto 25px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:
+  linear-gradient(
+    90deg,
+    #11843b,
+    #0c8e63
+  );
+
+  color:white;
+
+  font-size:34px;
+
+  box-shadow:
+  0 0 25px rgba(22,163,74,.35);
+}
+
+/* TITLE */
+
+.service-card h3{
+  font-size:24px;
+  margin-bottom:15px;
+  color:#09513d;
+}
+
+/* DESCRIPTION */
+
+.service-card p{
+  color:#166534;
+  line-height:1.8;
+  font-size:15px;
+}
+
+/* HOVER GLOW */
+
+.service-card::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  border-radius:25px;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(22,163,74,.12),
+    rgba(16,185,129,.12)
+  );
+
+  opacity:0;
+
+  transition:.4s;
+}
+
+.service-card:hover::before{
+  opacity:1;
+}
+
+/* TABLET */
+
+@media(max-width:992px){
+
+  .services-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .services-page{
+    padding:70px 5%;
+  }
+
+  .services-header h1{
+    font-size:34px;
+  }
+
+  .services-grid{
+    grid-template-columns:1fr;
+  }
+
+}

@@ -1,0 +1,84 @@
+.hero{
+  background: linear-gradient(
+    135deg,
+    #f8fffb,
+    #e8fff4,
+    #d1fae5
+  );
+}
+
+/* LEFT BLOB */
+.circle1{
+  background:
+    radial-gradient(circle, #10b981, #059669);
+}
+
+/* RIGHT BLOB */
+.circle2{
+  background:
+    radial-gradient(circle, #14b8a6, #0f766e);
+}
+
+/* CENTER GLOW */
+.circle3{
+  background:
+    radial-gradient(
+      circle,
+      #86efac,
+      #10b981
+    );
+}
+
+/* TOP MARQUEE */
+.top-marquee{
+  background: rgba(16, 185, 129, 0.12);
+}
+
+/* MARQUEE TEXT */
+.top-label{
+  color: #065f46;
+}
+
+/* HERO CONTENT */
+.hero-content{
+  color: #064e3b;
+}
+
+.hero-content p{
+  color: #166534;
+}
+
+/* BADGE */
+.hero-badge{
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #065f46;
+}
+
+/* HEADING GRADIENT */
+.hero-content h1 span{
+  background: linear-gradient(
+    90deg,
+    #16a34a,
+    #10b981,
+    #14b8a6
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* BUTTON */
+.shop-btn{
+  background: #10b981;
+  color: white;
+}
+
+.shop-btn:hover{
+  background: #059669;
+}
+
+/* STATS */
+.hero-stats span{
+  color: #166534;
+}

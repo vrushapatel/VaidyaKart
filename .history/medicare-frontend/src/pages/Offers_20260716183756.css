@@ -1,0 +1,230 @@
+/* =========================
+   OFFERS PAGE
+========================= */
+
+.offers-page{
+  padding:100px 8%;
+  min-height:100vh;
+
+  background:linear-gradient(
+    135deg,
+    #edfdf2,
+    #d2fbd2,
+    #a0e6bf
+  );
+
+  color:#065f46;
+}
+
+/* =========================
+   HEADING
+========================= */
+
+.offers-page h1{
+  text-align:center;
+  font-size:48px;
+  font-weight:800;
+  margin-bottom:60px;
+  color:#065f46;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.offers-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:35px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.offer-card{
+  position:relative;
+
+  background:rgba(255,255,255,.75);
+
+  backdrop-filter:blur(20px);
+
+  border:1px solid #d1fae5;
+
+  border-radius:25px;
+
+  overflow:hidden;
+
+  transition:.4s;
+
+  box-shadow:0 10px 25px rgba(22,163,74,.12);
+}
+
+.offer-card:hover{
+  transform:translateY(-10px);
+
+  border-color:#22c55e;
+
+  box-shadow:0 20px 40px rgba(22,163,74,.22);
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.offer-card img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+}
+
+/* =========================
+   SALE BADGE
+========================= */
+
+.sale-badge{
+  position:absolute;
+  top:15px;
+  right:15px;
+
+  background:linear-gradient(
+    90deg,
+    #16a34a,
+    #22c55e
+  );
+
+  color:#fff;
+
+  padding:8px 16px;
+
+  border-radius:30px;
+
+  font-weight:700;
+
+  box-shadow:0 5px 15px rgba(22,163,74,.35);
+}
+
+/* =========================
+   BOGO BADGE
+========================= */
+
+.bogo-badge{
+  position:absolute;
+  top:15px;
+  left:15px;
+
+  background:linear-gradient(
+    90deg,
+    #15803d,
+    #16a34a
+  );
+
+  color:#fff;
+
+  padding:7px 14px;
+
+  border-radius:30px;
+
+  font-size:12px;
+
+  font-weight:700;
+
+  z-index:2;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.offer-card h3{
+  padding:20px 20px 10px;
+
+  font-size:24px;
+
+  color:#065f46;
+}
+
+.price-box{
+  padding:0 20px;
+
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.old-price{
+  text-decoration:line-through;
+
+  color:#6b7280;
+
+  font-size:18px;
+}
+
+.new-price{
+  color:#16a34a;
+
+  font-size:26px;
+
+  font-weight:700;
+}
+
+.free-item-text{
+  padding:10px 20px 0;
+
+  color:#15803d;
+
+  font-size:14px;
+
+  font-weight:600;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.offer-card button{
+  margin:20px;
+
+  width:calc(100% - 40px);
+
+  padding:14px;
+
+  border:none;
+
+  border-radius:50px;
+
+  background:#ee1d1d;
+
+  color:#fff;
+
+  font-size:16px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+.offer-card button:hover{
+  background:#15803d;
+
+  transform:translateY(-3px);
+
+  box-shadow:0 10px 25px rgba(22,163,74,.35);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .offers-page{
+    padding:70px 5%;
+  }
+
+  .offers-page h1{
+    font-size:34px;
+  }
+
+}

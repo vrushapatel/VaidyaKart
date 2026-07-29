@@ -1,0 +1,37 @@
+.home{
+
+background:#f8fafc;
+
+min-height:100vh;
+
+}
+
+
+
+.welcome{
+
+text-align:center;
+
+padding:40px;
+
+}
+
+
+
+.welcome h1{
+
+font-size:35px;
+
+color:#15803d;
+
+}
+
+
+
+.welcome p{
+
+font-size:18px;
+
+color:#555;
+
+}
