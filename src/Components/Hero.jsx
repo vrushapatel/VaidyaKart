@@ -1,0 +1,96 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./Hero.css";
+
+const Hero = () => {
+   const navigate = useNavigate();
+
+  const labels = [
+    "💊 Up to 40% OFF on Medicines",
+    "🩺 30% OFF on Medical Devices",
+    "🤒 10% OFF on  Fever & Pain Relief",
+    "🎧 50% OFF On Wireless Earbuds",
+    "✨ New Collection Arrived",
+     "🩺 Essential Medical Devices Available",
+     "🩹 First Aid Essentials at Best Prices",
+  "📈 Best Selling Healthcare Products",
+  "🎉 Buy More, Save More!"
+  ];
+
+  return (
+    <section className="hero">
+
+      {/* Background Circles */}
+      <div className="circle circle1"></div>
+      <div className="circle circle2"></div>
+      <div className="circle circle3"></div>
+
+      {/* TOP MARQUEE */}
+
+      <div className="top-marquee">
+        <div className="top-marquee-content">
+
+          {[...labels, ...labels].map((item, index) => (
+            <span className="top-label" key={index}>
+              {item}
+            </span>
+          ))}
+
+        </div>
+      </div>
+
+      {/* HERO CONTENT */}
+
+      <div className="hero-content">
+
+       <span className="hero-badge">
+  🏥 Trusted Online Pharmacy & Healthcare Store
+</span>
+
+<h1>
+  Welcome To
+  <span> VaidyaKart</span>
+</h1>
+
+<p>
+  Your one-stop destination for genuine medicines,
+  healthcare essentials, medical devices, vitamins,
+  and wellness products. Enjoy trusted quality,
+  secure payments, and fast doorstep delivery across India.
+</p>
+
+        <div className="hero-btns">
+          <button
+          className="shop-btn"
+          onClick={() => navigate("/products")}
+        >
+            Shop Now
+          </button>
+        </div>
+
+        <div className="hero-stats">
+
+          <div>
+            <h3>10K+</h3>
+            <span>Customers</span>
+          </div>
+
+          <div>
+            <h3>50+</h3>
+            <span>Products</span>
+          </div>
+
+          <div>
+            <h3>4.4★</h3>
+            <span>Ratings</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+  );
+};
+
+export default Hero;
